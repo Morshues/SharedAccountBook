@@ -6,3 +6,9 @@
 #     https: false
 #   )
 # end
+
+Bundler.require(*Rails.groups)
+
+Dotenv::Railtie.load
+
+HOSTNAME = ENV['HOSTNAME']
