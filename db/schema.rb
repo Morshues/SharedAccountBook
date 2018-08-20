@@ -10,10 +10,62 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_19_081913) do
+ActiveRecord::Schema.define(version: 2018_08_20_132423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "books", force: :cascade do |t|
+    t.bigint "owner_id"
+    t.string "name"
+    t.string "currency_name"
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_books_on_owner_id"
+  end
+
+  create_table "exchanges", force: :cascade do |t|
+    t.bigint "book_id"
+    t.string "currency"
+    t.float "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_exchanges_on_book_id"
+  end
+
+  create_table "flows", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "member_id"
+    t.float "number", default: 0.0, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_flows_on_item_id"
+    t.index ["member_id"], name: "index_flows_on_member_id"
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.bigint "book_id"
+    t.string "title"
+    t.float "price", default: 0.0, null: false
+    t.datetime "time"
+    t.bigint "exchange_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_items_on_book_id"
+    t.index ["exchange_id"], name: "index_items_on_exchange_id"
+  end
+
+  create_table "members", force: :cascade do |t|
+    t.bigint "book_id"
+    t.bigint "user_id"
+    t.string "nickname"
+    t.string "key"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_members_on_book_id"
+    t.index ["user_id"], name: "index_members_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
