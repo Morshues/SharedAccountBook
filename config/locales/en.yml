@@ -30,4 +30,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  home:
+    signin:
+      facebook: "Sign in with Facebook"
+    signout: "Sign Out"
+  book:
+    new_book: "New Book"
