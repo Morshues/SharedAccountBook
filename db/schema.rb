@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 2018_08_20_132423) do
 
   create_table "books", force: :cascade do |t|
     t.bigint "owner_id"
-    t.string "name"
+    t.string "name", null: false
     t.string "currency_name"
     t.string "token"
     t.datetime "created_at", null: false
@@ -27,8 +27,8 @@ ActiveRecord::Schema.define(version: 2018_08_20_132423) do
 
   create_table "exchanges", force: :cascade do |t|
     t.bigint "book_id"
-    t.string "currency"
-    t.float "value"
+    t.string "currency", null: false
+    t.float "value", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_exchanges_on_book_id"
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2018_08_20_132423) do
 
   create_table "items", force: :cascade do |t|
     t.bigint "book_id"
-    t.string "title"
+    t.string "title", null: false
     t.float "price", default: 0.0, null: false
     t.datetime "time"
     t.bigint "exchange_id"
@@ -60,7 +60,6 @@ ActiveRecord::Schema.define(version: 2018_08_20_132423) do
     t.bigint "book_id"
     t.bigint "user_id"
     t.string "nickname"
-    t.string "key"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["book_id"], name: "index_members_on_book_id"
