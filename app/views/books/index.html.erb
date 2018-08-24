@@ -1,5 +1,8 @@
 
-<%= @books.to_json %>
+<% @books.each do |book| %>
+  <%= link_to book.name, book_path(book.token) %>
+  <br>
+<% end %>
 
 <br>
 

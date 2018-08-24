@@ -36,3 +36,6 @@ en:
     signout: "Sign Out"
   book:
     new_book: "New Book"
+    name: "Book Name"
+    owner: "Book Owner"
+    back_to_list: "Back to Books List"

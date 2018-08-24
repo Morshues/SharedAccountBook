@@ -8,7 +8,7 @@ class Book < ApplicationRecord
   # Attributes related macros
 
   # association macros
-  belongs_to :user, :class_name => "User", :foreign_key => "owner_id"
+  belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"
 
   # validation macros
   validates_presence_of :name

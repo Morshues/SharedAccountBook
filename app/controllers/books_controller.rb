@@ -21,7 +21,9 @@ class BooksController < ApplicationController
     end
   end
 
-  def show
+  def book
+    @book = Book.find_by(token: params[:token])
+    raise ActionController::RoutingError.new('Not Found') unless @book
   end
 
   private
