@@ -13,7 +13,8 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: %i[facebook]
 
   # association macros
-  has_many :books, :foreign_key => "owner_id"
+  has_many :book_memberships, :class_name => "Membership", dependent: :destroy
+  has_many :books, :through => :book_memberships, source: :book
 
   # validation macros
 

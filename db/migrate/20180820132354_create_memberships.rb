@@ -1,8 +1,9 @@
-class CreateMembers < ActiveRecord::Migration[5.2]
+class CreateMemberships < ActiveRecord::Migration[5.2]
   def change
-    create_table :members do |t|
+    create_table :memberships do |t|
       t.references :book, index: true
       t.references :user, index: true
+      t.integer :permission_group, null: false, default: 1
       t.string :nickname
 
       t.timestamps

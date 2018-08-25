@@ -8,7 +8,10 @@ class Book < ApplicationRecord
   # Attributes related macros
 
   # association macros
-  belongs_to :owner, :class_name => "User", :foreign_key => "owner_id"
+  has_many :user_memberships, :class_name => "Membership", dependent: :destroy
+  has_many :members, through: :user_memberships, source: :user
+  has_one :owner_membership, -> { where(permission_group: 0) }, :class_name => "Membership"
+  has_one :owner, through: :owner_membership, source: :user
 
   # validation macros
   validates_presence_of :name

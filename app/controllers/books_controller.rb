@@ -14,6 +14,7 @@ class BooksController < ApplicationController
 
     respond_to do |format|
       if @book.save
+        @book.user_memberships.create(user_id: current_user.id, permission_group: 0)
         format.html { redirect_to books_url }
       else
         format.js { render js: @book.errors.full_messages }

@@ -16,13 +16,11 @@ ActiveRecord::Schema.define(version: 2018_08_20_132423) do
   enable_extension "plpgsql"
 
   create_table "books", force: :cascade do |t|
-    t.bigint "owner_id"
     t.string "name", null: false
     t.string "currency_name"
     t.string "token"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["owner_id"], name: "index_books_on_owner_id"
   end
 
   create_table "exchanges", force: :cascade do |t|
@@ -56,14 +54,15 @@ ActiveRecord::Schema.define(version: 2018_08_20_132423) do
     t.index ["exchange_id"], name: "index_items_on_exchange_id"
   end
 
-  create_table "members", force: :cascade do |t|
+  create_table "memberships", force: :cascade do |t|
     t.bigint "book_id"
     t.bigint "user_id"
+    t.integer "permission_group", default: 1, null: false
     t.string "nickname"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["book_id"], name: "index_members_on_book_id"
-    t.index ["user_id"], name: "index_members_on_user_id"
+    t.index ["book_id"], name: "index_memberships_on_book_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
