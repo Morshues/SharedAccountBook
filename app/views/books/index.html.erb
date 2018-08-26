@@ -4,11 +4,20 @@
   <br>
 <% end %>
 
-<br>
+<hr>
 
-<%= link_to t('book.new_book'), new_book_path %>
+<%= form_for current_user.books.new, url: books_path, remote: true do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :name, required: true %>
 
-<br>
+  <%= f.label :currency_name %>
+  <%= f.text_field :currency_name, value: 'USD' %>
+  
+  <%= link_to t('cancel'), books_path %>
+  <%= f.submit %>
+<% end %>
+
+<hr>
 
 <%= link_to t('home.signout'), destroy_user_session_path, :method => :delete %>
 
