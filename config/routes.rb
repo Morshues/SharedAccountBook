@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  resources :books, only: [:index, :create]
-  get 'book/:token' => 'books#book', as: 'book'
+  resources :books, only: [:index, :create, :edit, :update]
+  get 'book/:token', to: 'books#book', as: 'book_token'
 
 end
