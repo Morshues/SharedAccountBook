@@ -1,0 +1,3 @@
+var book_members = document.getElementById("book-members");
+var new_member = new DOMParser().parseFromString("<%= escape_javascript(render partial: 'member_brief', locals: { name: @new_membership.nickname }).html_safe %>", "text/xml").firstChild;
+book_members.appendChild(new_member);

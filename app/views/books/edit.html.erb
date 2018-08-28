@@ -1,11 +1,28 @@
 <%= form_for @book, url: book_path, remote: true do |f| %>
-  <%= f.label :name %>
+  <%= f.label t('book.name') %>
   <%= f.text_field :name, required: true %>
 
-  <%= f.label :currency_name %>
+  <%= f.label :currency %>
   <%= f.text_field :currency_name, value: 'USD' %>
-  
-  <%= link_to t('cancel'), books_path %>
+
   <%= f.submit %>
 <% end %>
 
+<hr>
+
+<div id="book-members">
+  <% @book.user_memberships.each do |membership| %>
+    <%= render partial: 'member_brief', locals: { name: membership.nickname || membership.user&.name } %>
+  <% end %>
+</div>
+
+<%= form_for @book.user_memberships.new, url: book_create_member_path(@book), remote: true do |f| %>
+  <%= f.label :name %>
+  <%= f.text_field :nickname, required: true %>
+
+  <%= f.submit t('book.create_member') %>
+<% end %>
+
+<hr>
+
+<%= link_to t('cancel'), books_path %>

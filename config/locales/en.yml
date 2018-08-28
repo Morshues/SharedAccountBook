@@ -39,3 +39,4 @@ en:
     name: "Book Name"
     owner: "Book Owner"
     back_to_list: "Back to Books List"
+    create_member: "Create Member"

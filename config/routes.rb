@@ -3,7 +3,9 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  resources :books, only: [:index, :create, :edit, :update]
+  resources :books, only: [:index, :create, :edit, :update] do
+    post 'create_member'
+  end
   get 'book/:token', to: 'books#book', as: 'book_token'
 
 end

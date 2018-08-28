@@ -38,6 +38,18 @@ class BooksController < ApplicationController
     end
   end
 
+  def create_member
+    @book = current_user.books.find(params[:book_id])
+    @new_membership = @book.user_memberships.new(membership_params)
+    respond_to do |format|
+      if @new_membership.save
+        format.js
+      else
+        format.js { render js: @new_membership.errors.full_messages }
+      end
+    end
+  end
+
   def book
     @book = Book.find_by(token: params[:token])
     raise ActionController::RoutingError.new('Not Found') unless @book
@@ -46,5 +58,8 @@ class BooksController < ApplicationController
   private
     def book_params
       params.require(:book).permit(:name, :currency_name)
+    end
+    def membership_params
+      params.require(:membership).permit(:nickname)
     end
 end
