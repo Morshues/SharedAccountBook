@@ -2,4 +2,6 @@
   <%= link_to t('home.signout'), destroy_user_session_path, :method => :delete %>
 <% else %>
   <%= link_to t('home.signin.facebook'), user_facebook_omniauth_authorize_path %>
+  <br>
+  <%= link_to t('home.signin.google'), user_google_oauth2_omniauth_authorize_path %>
 <% end %>

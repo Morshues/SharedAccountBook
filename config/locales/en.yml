@@ -33,6 +33,7 @@ en:
   home:
     signin:
       facebook: "Sign in with Facebook"
+      google: "Sign in with Google"
     signout: "Sign Out"
   book:
     new_book: "New Book"

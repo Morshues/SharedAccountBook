@@ -64,3 +64,4 @@ gem 'dotenv-rails'
 
 gem 'devise'
 gem 'omniauth-facebook'
+gem 'omniauth-google-oauth2'
