@@ -8,7 +8,7 @@ class User < ApplicationRecord
   # Attributes related macros
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable, :rememberable,
+  devise :database_authenticatable,
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
   # association macros
