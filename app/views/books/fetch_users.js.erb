@@ -1,0 +1,6 @@
+<% content_str = "" %>
+<% @result.each do |user| %>
+  <% content_str += render partial: 'fetched_user_block', locals: { book: @book, member: @book.user_memberships.new(user_id: user.id) } %>
+<% end %>
+
+$("#users-preview").html("<%= escape_javascript(content_str).html_safe %>");

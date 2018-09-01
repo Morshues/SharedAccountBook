@@ -37,6 +37,12 @@ class User < ApplicationRecord
     end
   end
 
+  def self.search(word, count = 5)
+    query = "%#{word}%"
+    mail_query = "%#{word}%@%"
+    self.where('name ILIKE ? OR email ILIKE ?', query, mail_query).take(count)
+  end
+
   private
     # callback methods
 end

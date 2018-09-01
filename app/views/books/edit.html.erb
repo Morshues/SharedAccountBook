@@ -22,7 +22,24 @@
 
   <%= f.submit t('book.create_member') %>
 <% end %>
+<div id="users-preview">
+</div>
 
 <hr>
 
-<%= link_to t('cancel'), books_path %>
+<%= link_to t('cancel'), book_token_path(@book.token) %>
+
+<script>
+  $(document).on("turbolinks:load", function(event) {
+    let input_nickname = $("#new_membership #membership_nickname");
+    if (input_nickname.length > 0) {
+      input_nickname[0].oninput = function(e) {
+        if (e.target.value != "") {
+          $.post("fetch_users", { word: input_nickname.val() });
+        } else {
+          $("#users-preview").html("");
+        }
+      };
+    }
+  });
+</script>

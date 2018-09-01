@@ -1,1 +1,2 @@
-var book_members = $("#book-members").append("<%= escape_javascript(render partial: 'member_brief', locals: { name: @new_membership.nickname }).html_safe %>");
+$("#book-members").append("<%= escape_javascript(render partial: 'member_brief', locals: { name: @new_membership.name }).html_safe %>");
+$("#users-preview").html("");

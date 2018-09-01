@@ -50,6 +50,14 @@ class BooksController < ApplicationController
     end
   end
 
+  def fetch_users
+    @book = current_user.books.find(params[:book_id])
+    @result = User.search(params[:word]) - @book.members
+    respond_to do |format|
+      format.js
+    end
+  end
+
   def book
     @book = Book.find_by(token: params[:token])
     raise ActionController::RoutingError.new('Not Found') unless @book
@@ -60,6 +68,6 @@ class BooksController < ApplicationController
       params.require(:book).permit(:name, :currency_name)
     end
     def membership_params
-      params.require(:membership).permit(:nickname)
+      params.require(:membership).permit(:user_id, :nickname)
     end
 end
