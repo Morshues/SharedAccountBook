@@ -30,3 +30,10 @@
 .env.development
 .env.test
 .env.production
+
+# Ignore webpack files
+/public/packs
+/public/packs-test
+/node_modules
+yarn-debug.log*
+.yarn-integrity

@@ -2,6 +2,14 @@
   "name": "SharedWallet",
   "private": true,
   "dependencies": {
-    "jquery": "^3.3.1"
+    "@rails/webpacker": "3.5",
+    "actioncable": "^5.2.1",
+    "activestorage": "^5.2.1",
+    "jquery": "^3.3.1",
+    "rails-ujs": "^5.2.1",
+    "turbolinks": "^5.2.0"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
   }
 }
