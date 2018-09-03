@@ -9,6 +9,7 @@
 
 import 'stylesheets/application';
 import 'jquery';
+import 'bootstrap';
 
 import Rails from 'rails-ujs';
 import Turbolinks from 'turbolinks';
