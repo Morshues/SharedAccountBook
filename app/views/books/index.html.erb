@@ -1,8 +1,30 @@
 
-<% @books.each do |book| %>
-  <%= link_to book.name, book_token_path(book.token) %>
-  <br>
-<% end %>
+<div>
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th scope="col"><%= t('book.id') %></th>
+        <th scope="col"><%= t('book.name') %></th>
+        <th scope="col"><%= t('book.owner') %></th>
+        <th scope="col"><%= t('book.members') %></th>
+        <th scope="col"><%= t('book.currency') %></th>
+        <th scope="col"><%= t('book.updated_at') %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @books.each do |book| %>
+        <tr>
+          <td><%= book.id %></td>
+          <td><%= link_to book.name, book_token_path(book.token) %></td>
+          <td><%= book.owner_membership.name %></td>
+          <td><%= book.members.size %></td>
+          <td><%= book.currency_name %></td>
+          <td><%= book.updated_at %></td>
+        </tr>
+      <% end %> 
+    </tbody>
+  </table>
+</div>
 
 <hr>
 

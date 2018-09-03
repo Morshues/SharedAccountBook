@@ -37,7 +37,11 @@ en:
     signout: "Sign Out"
   book:
     new_book: "New Book"
+    id: "Book ID"
     name: "Book Name"
+    members: "Book Members"
     owner: "Book Owner"
+    currency: "Book Currency"
+    updated_at: "Last Updated"
     back_to_list: "Back to Books List"
     create_member: "Create Member"
