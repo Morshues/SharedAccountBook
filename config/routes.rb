@@ -3,9 +3,11 @@ Rails.application.routes.draw do
 
   root to: "home#index"
 
-  resources :books, only: [:index, :create, :edit, :update] do
-    post 'create_member', 'fetch_users', 'add_member'
+  resources :books, except: [:new, :destroy], param: :token do
+    member do
+      post 'create_member', 'fetch_users'
+      post 'create_item'
+    end
   end
-  get 'book/:token', to: 'books#book', as: 'book_token'
 
 end

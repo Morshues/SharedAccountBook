@@ -1,4 +1,4 @@
-<%= form_for member, url: book_create_member_path(book), remote: true do |f| %>
+<%= form_for member, url: create_member_book_path(book.token), remote: true do |f| %>
   <%= f.hidden_field :user_id %>
   <%= f.submit member.user.name %>
 <% end %>

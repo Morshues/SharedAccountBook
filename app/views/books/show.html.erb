@@ -5,6 +5,6 @@
 <%= t('book.owner') %>
 <%= @book.owner.name %>
 <br>
-
-<%= link_to t('edit'), edit_book_path(@book) %>
+<hr>
+<%= link_to t('edit'), edit_book_path(@book.token) %>
 <%= link_to t('back_to_list'), books_path %>

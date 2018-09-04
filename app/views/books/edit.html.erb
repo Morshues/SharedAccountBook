@@ -16,7 +16,7 @@
   <% end %>
 </div>
 
-<%= form_for @book.user_memberships.new, url: book_create_member_path(@book), remote: true do |f| %>
+<%= form_for @book.user_memberships.new, url: create_member_book_path(@book.token), remote: true do |f| %>
   <%= f.label :name %>
   <%= f.text_field :nickname, required: true %>
 
@@ -27,7 +27,7 @@
 
 <hr>
 
-<%= link_to t('cancel'), book_token_path(@book.token) %>
+<%= link_to t('cancel'), book_path(@book.token) %>
 
 <script>
   $(document).on("turbolinks:load", function(event) {
