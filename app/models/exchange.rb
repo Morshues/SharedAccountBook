@@ -8,6 +8,7 @@ class Exchange < ApplicationRecord
   # Attributes related macros
 
   # association macros
+  belongs_to :book
 
   # validation macros
 

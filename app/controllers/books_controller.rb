@@ -55,12 +55,12 @@ class BooksController < ApplicationController
   end
 
   def show
-    raise ActionController::RoutingError.new('Not Found') unless @book
   end
 
   private
     def set_book
       @book = current_user.books.find_by(token: params[:token])
+      raise ActionController::RoutingError.new('Not Found') unless @book
     end
 
     def book_params

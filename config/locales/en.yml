@@ -45,3 +45,7 @@ en:
     updated_at: "Last Updated"
     back_to_list: "Back to Books List"
     create_member: "Create Member"
+    item:
+      time: "Time"
+      title: "Title"
+      price: "Price"

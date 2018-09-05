@@ -12,8 +12,8 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
   # association macros
-  has_many :book_memberships, :class_name => "Membership", dependent: :destroy
-  has_many :books, :through => :book_memberships, source: :book
+  has_many :book_memberships, class_name: 'Membership', dependent: :destroy
+  has_many :books, through: :book_memberships, source: :book
 
   # validation macros
 

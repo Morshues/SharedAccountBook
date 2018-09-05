@@ -34,12 +34,12 @@ ActiveRecord::Schema.define(version: 2018_08_20_132423) do
 
   create_table "flows", force: :cascade do |t|
     t.bigint "item_id"
-    t.bigint "member_id"
+    t.bigint "membership_id"
     t.float "number", default: 0.0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["item_id"], name: "index_flows_on_item_id"
-    t.index ["member_id"], name: "index_flows_on_member_id"
+    t.index ["membership_id"], name: "index_flows_on_membership_id"
   end
 
   create_table "items", force: :cascade do |t|

@@ -8,10 +8,12 @@ class Book < ApplicationRecord
   # Attributes related macros
 
   # association macros
-  has_many :user_memberships, :class_name => "Membership", dependent: :destroy
+  has_many :user_memberships, class_name: 'Membership', dependent: :destroy
   has_many :members, through: :user_memberships, source: :user
-  has_one :owner_membership, -> { where(permission_group: 0) }, :class_name => "Membership"
+  has_one :owner_membership, -> { where(permission_group: 0) }, class_name: 'Membership'
   has_one :owner, through: :owner_membership, source: :user
+  has_many :items, dependent: :destroy
+  has_many :exchanges, dependent: :destroy
 
   # validation macros
   validates_presence_of :name

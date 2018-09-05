@@ -4,7 +4,7 @@
     <%= "#{current_user.name} (#{current_user.provider})" %>
   </div>
   <div class="header-signout">
-    <%= link_to t('home.signout'), destroy_user_session_path, :method => :delete %>
+    <%= link_to t('home.signout'), destroy_user_session_path, method: :delete %>
   </div>
 </nav>
 <hr>

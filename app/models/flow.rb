@@ -8,6 +8,8 @@ class Flow < ApplicationRecord
   # Attributes related macros
 
   # association macros
+  belongs_to :membership, optional: true
+  belongs_to :item
 
   # validation macros
 

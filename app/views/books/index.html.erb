@@ -17,7 +17,7 @@
           <td><%= book.id %></td>
           <td><%= link_to book.name, book_path(book.token) %></td>
           <td><%= book.owner_membership.name %></td>
-          <td><%= book.members.size %></td>
+          <td><%= book.user_memberships.size %></td>
           <td><%= book.currency_name %></td>
           <td><%= book.updated_at %></td>
         </tr>

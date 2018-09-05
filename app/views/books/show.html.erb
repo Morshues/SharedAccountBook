@@ -1,10 +1,37 @@
 <%= t('book.name') %>
 <%= @book.name %>
 <br>
-
 <%= t('book.owner') %>
 <%= @book.owner.name %>
-<br>
+<hr>
+<div>
+  <span><%= t('book.item.time') %></span>
+  <span><%= t('book.item.title') %></span>
+  <span><%= t('book.item.price') %></span>
+  <% members_arr = [] %>
+  <% @book.user_memberships.each do |member| %>
+    <span><%= member.name %></span>
+    <% members_arr.push member.id %>
+  <% end %>
+
+  <% @book.items.includes(flows: :membership).each do |item| %>
+    <div>
+      <span><%= item.time %></span>
+      <span><%= item.title %></span>
+      <span>
+        <%= item.price.abs %>
+        <%= "(#{item.exchange_name})" if item.exchange_id.present? %>
+      </span>
+      <% members_arr.each do |member_id| %>
+        <% flow_num = item.flows.find_by(membership_id: member_id)&.number %>
+        <span>
+          <%= flow_num&.abs %>
+        </span>
+      <% end %>
+      <span><%= link_to '╳', delete_item_book_path(item_id: item.id), remote: true, method: :delete %></span>
+    </div>
+  <% end %>
+</div>
 <hr>
 <%= link_to t('edit'), edit_book_path(@book.token) %>
 <%= link_to t('back_to_list'), books_path %>
