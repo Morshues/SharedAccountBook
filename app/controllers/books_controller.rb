@@ -57,6 +57,31 @@ class BooksController < ApplicationController
   def show
   end
 
+  def create_item
+    params[:item][:price] = params[:item][:price].to_i * [-1, 1][params[:item][:sign].to_i]
+    params[:item][:flows_attributes].each do |index, flow|
+      flow[:number] = flow[:number].to_i * [-1, 1][flow[:sign].to_i]
+    end
+
+    respond_to do |format|
+      item = @book.items.new(item_params)
+      if item.save
+        format.js
+      else
+        format.js { render js: item.errors.full_messages }
+      end
+    end
+  end
+
+  def delete_item
+    item = @book.items.find(params[:item_id])
+    item.destroy
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
     def set_book
       @book = current_user.books.find_by(token: params[:token])
@@ -68,5 +93,8 @@ class BooksController < ApplicationController
     end
     def membership_params
       params.require(:membership).permit(:user_id, :nickname)
+    end
+    def item_params
+      params.require(:item).permit(:title, :price, :time, flows_attributes: [:membership_id, :number])
     end
 end

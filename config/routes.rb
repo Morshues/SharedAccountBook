@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     member do
       post 'create_member', 'fetch_users'
       post 'create_item'
+      delete 'delete_item'
     end
   end
 
