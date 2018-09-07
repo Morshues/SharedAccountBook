@@ -49,3 +49,6 @@ en:
       time: "Time"
       title: "Title"
       price: "Price"
+      add: "Add Item"
+      cancel: "Cancel"
+      reset_time: "Reset Time"

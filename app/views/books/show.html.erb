@@ -33,5 +33,7 @@
   <% end %>
 </div>
 <hr>
+  <%= render partial: 'create_block' %>
+<hr>
 <%= link_to t('edit'), edit_book_path(@book.token) %>
 <%= link_to t('back_to_list'), books_path %>

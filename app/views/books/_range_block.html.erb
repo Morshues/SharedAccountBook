@@ -1,0 +1,10 @@
+<div>
+  <% switcher_tag = "switcher-#{membership.id}" %>
+  <div>
+    <%= f.check_box :sign, id: switcher_tag, checked:true %>
+    <label for="<%=switcher_tag%>"></label>
+  </div>
+  <%= f.hidden_field :membership_id, value: membership.id %>
+  <%= f.number_field :number %>
+  <%= f.label :name, "#{membership.name}" %>
+</div>
