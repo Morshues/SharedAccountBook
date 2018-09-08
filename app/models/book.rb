@@ -34,6 +34,10 @@ class Book < ApplicationRecord
     self.token = Book.gen_token
   end
 
+  def total_price
+    self.items.sum(:price)
+  end
+
   private
     # callback methods
 end

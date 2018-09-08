@@ -10,6 +10,7 @@ class Membership < ApplicationRecord
   # association macros
   belongs_to :user, optional: true
   belongs_to :book
+  has_many :flows, dependent: :destroy
 
   # validation macros
   validate :nickname_or_user, :nickname_exist
@@ -20,6 +21,10 @@ class Membership < ApplicationRecord
   # other
   def name
     nickname || user.name
+  end
+
+  def total_price
+    self.flows.sum(:number)
   end
 
   private
