@@ -18,6 +18,9 @@ class Item < ApplicationRecord
   # callbacks
 
   # other
+  def currency
+    self.exchange&.currency || self.book.currency_name
+  end
 
   private
     # callback methods

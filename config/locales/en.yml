@@ -48,6 +48,7 @@ en:
     item:
       time: "Time"
       title: "Title"
+      currency: "Currency"
       price: "Price"
       add: "Add Item"
       cancel: "Cancel"
