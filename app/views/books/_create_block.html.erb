@@ -1,43 +1,54 @@
-<div>
-  <div>
-    <% new_item = @book.items.new %>
-    <%= form_for new_item, url: create_item_book_path, remote: true do |f| %>
-      <div>
-        <%= label_tag :title, t('book.item.title') %>
-        <%= f.text_field :title, required: true %>
-      </div>
+<button type="button" class="btn" data-toggle="modal" data-target="#createItemModal">
+  <%= t('book.item.add') %>
+</button>
 
-      <div>
-        <%= label_tag :price, t('book.item.price') %>
-        <%= f.number_field :price %>
-        <% switcher_tag = "switcher-book-#{@book.id}" %>
-        <div>
-          <%= f.check_box :sign, id: switcher_tag, checked:true %>
-          <label for="<%=switcher_tag%>"></label>
+<div class="modal" id="createItemModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="createItemModalTitle"><%= t('book.item.add') %></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <% new_item = @book.items.new %>
+      <%= form_for new_item, url: create_item_book_path, remote: true do |f| %>
+        <div class="modal-body">
+          <div>
+            <%= label_tag :title, t('book.item.title') %>
+            <%= f.text_field :title, required: true %>
+          </div>
+
+          <div>
+            <%= label_tag :price, t('book.item.price') %>
+            <%= f.number_field :price %>
+            <% switcher_tag = "switcher-book-#{@book.id}" %>
+            <div>
+              <%= f.check_box :sign, id: switcher_tag, checked:true %>
+              <label for="<%=switcher_tag%>"></label>
+            </div>
+          </div>
+
+          <div>
+            <%= label_tag :time, t('book.item.time') %>
+            <%= f.date_select :time, { default: DateTime.now } %>
+            <%= f.time_select :time, { default: Time.now } %>
+            <span><%= t('book.item.reset_time') %></span>
+          </div>
+
+          <div>
+            <% @book.user_memberships.each do |membership|%>
+              <%= f.fields_for :flows, new_item.flows.build, multiple: true do |flow_field| %>
+                <%= render partial: 'range_block', locals: { f: flow_field, membership: membership } %>
+              <% end %>
+            <% end %>
+          </div>
         </div>
-      </div>
 
-      <div>
-        <%= label_tag :time, t('book.item.time') %>
-        <%= f.date_select :time, { default: DateTime.now } %>
-        <%= f.time_select :time, { default: Time.now } %>
-        <span><%= t('book.item.reset_time') %></span>
-      </div>
-
-      <hr>
-
-      <div>
-        <% @book.user_memberships.each do |membership|%>
-          <%= f.fields_for :flows, new_item.flows.build, multiple: true do |flow_field| %>
-            <%= render partial: 'range_block', locals: { f: flow_field, membership: membership } %>
-          <% end %>
-        <% end %>
-      </div>
-
-      <div>
-        <span><%= t('book.item.cancel') %></span>
-        <%= submit_tag t('book.item.add') %>
-      </div>
-    <% end %>
+        <div class="modal-footer">
+          <%= submit_tag t('book.item.add') %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
