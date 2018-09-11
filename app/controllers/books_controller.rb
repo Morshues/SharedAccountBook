@@ -64,11 +64,13 @@ class BooksController < ApplicationController
     end
 
     respond_to do |format|
-      item = @book.items.new(item_params)
-      if item.save
+      @item = @book.items.new(item_params)
+      if @item.save
+        # TODO: This @members_arr may be different with original list
+        @members_arr = @book.user_memberships.map {|member| member.name }
         format.js
       else
-        format.js { render js: item.errors.full_messages }
+        format.js { render js: @item.errors.full_messages }
       end
     end
   end

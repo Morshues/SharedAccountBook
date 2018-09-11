@@ -1,0 +1,3 @@
+$('#tablebody-book').append("<%= escape_javascript(render partial: 'book_item', locals: { item: @item, members_arr: @members_arr }).html_safe %>");
+$('#createItemModal form')[0].reset();
+$('#createItemModal').modal('hide');
