@@ -76,8 +76,8 @@ class BooksController < ApplicationController
   end
 
   def delete_item
-    item = @book.items.find(params[:item_id])
-    item.destroy
+    @item = @book.items.find(params[:item_id])
+    @item.destroy
 
     respond_to do |format|
       format.js
