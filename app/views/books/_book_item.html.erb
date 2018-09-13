@@ -3,13 +3,13 @@
   <td><%= item.title %></td>
   <td><%= item.currency %></td>
   <td>
-    <%= item.price.abs %>
+    <%= price_format(item.price.abs) %>
     <%= "(#{item.exchange_name})" if item.exchange_id.present? %>
   </td>
   <% members_arr.each do |member_id| %>
     <% flow_num = item.flows.find_by(membership_id: member_id)&.number || 0 %>
     <td>
-      <%= flow_num&.abs %>
+      <%= price_format(flow_num.abs) if flow_num %>
     </td>
   <% end %>
   <td><%= link_to '╳', delete_item_book_path(item_id: item.id), remote: true, method: :delete %></td>
