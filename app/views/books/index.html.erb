@@ -8,6 +8,7 @@
         <th scope="col"><%= t('book.owner') %></th>
         <th scope="col"><%= t('book.members') %></th>
         <th scope="col"><%= t('book.currency') %></th>
+        <th scope="col"><%= t('book.total_property') %></th>
         <th scope="col"><%= t('book.updated_at') %></th>
       </tr>
     </thead>
@@ -19,6 +20,7 @@
           <td><%= book.owner_membership.name %></td>
           <td><%= book.user_memberships.size %></td>
           <td><%= book.currency_name %></td>
+          <td><%= price_format(book.total_property) %></td>
           <td><%= book.updated_at %></td>
         </tr>
       <% end %> 

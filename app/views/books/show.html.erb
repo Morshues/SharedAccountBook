@@ -27,8 +27,8 @@
     </tbody>
     <tfoot>
       <tr>
-        <th colspan="3"><%= t('book.summary') %></th>
-        <th><%= price_format(@book.total_price) %></th>
+        <th colspan="3"><%= t('book.total_property') %></th>
+        <th><%= price_format(@book.total_property) %></th>
         <% @book.user_memberships.each do |member| %>
           <th><%= price_format(member.total_price) %></th>
         <% end %>

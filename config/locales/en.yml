@@ -42,6 +42,7 @@ en:
     members: "Book Members"
     owner: "Book Owner"
     currency: "Book Currency"
+    total_property: "Total Property"
     updated_at: "Last Updated"
     back_to_list: "Back to Books List"
     create_member: "Create Member"

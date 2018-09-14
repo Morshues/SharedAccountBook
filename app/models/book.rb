@@ -34,7 +34,7 @@ class Book < ApplicationRecord
     self.token = Book.gen_token
   end
 
-  def total_price
+  def total_property
     self.items.sum(:price)
   end
 
